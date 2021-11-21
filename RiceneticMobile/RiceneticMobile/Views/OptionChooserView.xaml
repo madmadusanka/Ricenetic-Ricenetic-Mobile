@@ -7,9 +7,10 @@
             <Button Text="Open Camera" Command="{Binding OpenCameraCommand}"></Button>
 
 
-            <Button Command="{Binding PickPhotoCommand}" Text="Uppload Photo"></Button>
+            <Button Command="{Binding PickPhotoCommand}" Text="Upload Photo"></Button>
 
             <Image Source="{Binding Image}"></Image>
+            <Button Command="{Binding PickPhotoCommand}" Text="Upload Photo"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

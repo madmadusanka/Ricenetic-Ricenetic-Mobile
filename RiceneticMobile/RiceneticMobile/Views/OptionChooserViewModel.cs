@@ -1,4 +1,6 @@
-﻿using Graycorp.Mobile.ViewModel.Base;
+﻿using Graycorp.Mobile.Services;
+using Graycorp.Mobile.Services.Interfaces;
+using Graycorp.Mobile.ViewModel.Base;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,9 +20,17 @@ namespace RiceneticMobile.Views
         private ICommand _pickPhotoCommand = null;
         public ICommand PickPhotoCommand => _pickPhotoCommand = new Command(() => DoPickPhotoCommand());
 
+        private ICommand _uploadPhotoCommand = null;
+        public ICommand UploadPhotoCommand => _uploadPhotoCommand = new Command(() => DoUploadPhotoCommand());
+
         private ImageSource _image;
         public ImageSource Image { get { return _image; } set { SetProperty(ref _image, value);} }
 
+        IHttpRequestProviderService httpRequestProviderService;
+        public OptionChooserViewModel()
+        {
+            httpRequestProviderService = new HttpRequestProviderService();
+        }
 
         private async Task DoOpenCameraCommandAsync()
         {
@@ -75,6 +85,10 @@ namespace RiceneticMobile.Views
             }
         }
 
+        async Task DoUploadPhotoCommand()
+        {
+            //httpRequestProviderService.PostAsync();
+        }
         async Task LoadPhotoAsync(FileResult photo)
         {
             // canceled
