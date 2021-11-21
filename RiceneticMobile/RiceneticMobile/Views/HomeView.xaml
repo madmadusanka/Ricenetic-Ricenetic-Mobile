@@ -4,7 +4,16 @@
              x:Class="RiceneticMobile.Views.HomeView">
   <ContentPage.Content>
       <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
+            <!--<Image VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  Source="https://c.pxhere.com/photos/0d/42/parallel_veins_rice-699664.jpg!d"></Image>-->
+            <!--<Ellipse 
+                 Grid.Column="0"
+                 Grid.Row="0"
+                 Fill="Red"
+                 WidthRequest="150"
+                 HeightRequest="50"
+                 HorizontalOptions="Start" />-->
+            <Button Command="{Binding UploadPhotoCommand}" Text="Uppload Photo"></Button>
+
+        </StackLayout>
   </ContentPage.Content>
 </ContentPage>

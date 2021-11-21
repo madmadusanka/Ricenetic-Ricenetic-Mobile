@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 namespace RiceneticMobile.UWP
 {
     /// <summary>
@@ -28,6 +29,7 @@ namespace RiceneticMobile.UWP
         /// </summary>
         public App()
         {
+          
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -52,6 +54,7 @@ namespace RiceneticMobile.UWP
             // just ensure that the window is active
             if (rootFrame == null)
             {
+                Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
