@@ -1,6 +1,7 @@
 ﻿using Graycorp.Mobile.Services;
 using Graycorp.Mobile.Services.Interfaces;
 using Graycorp.Mobile.ViewModel.Base;
+using RiceneticMobile.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,18 +11,17 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace RiceneticMobile.Views
+namespace RiceneticMobile.ViewModels
 {
     public class OptionChooserViewModel : BaseViewModel
     {
         private ICommand _openCameraCommand = null;
-        public ICommand OpenCameraCommand => _openCameraCommand = new Command(() => DoOpenCameraCommandAsync());
+        public ICommand OpenCameraCommand => _openCameraCommand = new Command(async () => await DoOpenCameraCommandAsync());
 
         private ICommand _pickPhotoCommand = null;
-        public ICommand PickPhotoCommand => _pickPhotoCommand = new Command(() => DoPickPhotoCommand());
+        public ICommand PickPhotoCommand => _pickPhotoCommand = new Command(async () => await DoPickPhotoCommand());
 
-        private ICommand _uploadPhotoCommand = null;
-        public ICommand UploadPhotoCommand => _uploadPhotoCommand = new Command(() => DoUploadPhotoCommand());
+
 
         private ImageSource _image;
         public ImageSource Image { get { return _image; } set { SetProperty(ref _image, value);} }
@@ -85,10 +85,7 @@ namespace RiceneticMobile.Views
             }
         }
 
-        async Task DoUploadPhotoCommand()
-        {
-            //httpRequestProviderService.PostAsync();
-        }
+     
         async Task LoadPhotoAsync(FileResult photo)
         {
             // canceled
@@ -100,6 +97,9 @@ namespace RiceneticMobile.Views
             // save the file into local storage
             var stream = await photo.OpenReadAsync();
             Image = ImageSource.FromStream(() => stream);
+
+            Application.Current.MainPage = new ImageUploadView();
+            Application.Current.MainPage.BindingContext = new ImageUploadViewModel(Image);
             //PhotoPath = newFile;
         }
 

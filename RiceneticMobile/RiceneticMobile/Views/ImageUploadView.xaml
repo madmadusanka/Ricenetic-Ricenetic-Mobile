@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RiceneticMobile.Extension"
+             x:Class="RiceneticMobile.Views.ImageUploadView">
+    <ContentPage.Content>
+        <Grid>
+            <Image Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="{Binding Image}"></Image>
+            <Grid Grid.Row="0" HeightRequest="50" WidthRequest="50"  HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                <Image Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
+                <ImageButton Margin="10"  Source="{local:ImageResource RiceneticMobile.Images.Upload.png}" Command="{Binding UploadPhotoCommand}">
+                </ImageButton>
+            </Grid>
+           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

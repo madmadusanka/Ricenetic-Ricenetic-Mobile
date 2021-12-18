@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
 
 namespace RiceneticMobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomeView : ContentPage
+    public partial class RequestView : ContentPage
     {
-        public HomeView()
+        public RequestView()
         {
             InitializeComponent();
         }

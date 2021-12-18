@@ -10,11 +10,11 @@ namespace RiceneticMobile.ViewModels
     public class HomeViewModel
     {
 
-        private ICommand _uploadPhotoCommand = null;
-        public ICommand UploadPhotoCommand => _uploadPhotoCommand = new Command(() => DoUploadPhotoCommand());
+        private ICommand openSelecctionViewCommand = null;
+        public ICommand OpenSelecctionViewCommand => openSelecctionViewCommand = new Command(() => DoOpenSelecctionViewCommand());
 
 
-        private void DoUploadPhotoCommand()
+        private void DoOpenSelecctionViewCommand()
         {
             Application.Current.MainPage = new OptionChooserView();
             Application.Current.MainPage.BindingContext = new OptionChooserViewModel();

@@ -1,16 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RiceneticMobile.Extension"
              x:Class="RiceneticMobile.Views.OptionChooserView">
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="Open Camera" Command="{Binding OpenCameraCommand}"></Button>
+        <Grid RowDefinitions="10*,*">
+            <Ellipse 
+                 Fill="#62E06F"
+                 ScaleX="1.5"
+                ScaleY="1"
+               
+                 Grid.Row="0"
+                VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand" />
+            <Ellipse 
+                Margin="50,80,-10,80"
+                 Fill="#0AC2A2"
+                 ScaleX="1.5"
+                ScaleY="1"
+                 Grid.Row="0"
+                VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand" />
+            <Ellipse 
+                 Fill="White"
+                 ScaleX="1."
+                ScaleY="1"
+                HeightRequest="200"
+                WidthRequest="200"
+                 Grid.Row="0"
+                VerticalOptions="Center"
+                 HorizontalOptions="Center" />
+            <Ellipse 
+                 Fill="#62E06F"
+                 ScaleX="1.5"
+                ScaleY="1"
+               
+                 Grid.Row="0"
+                VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand" />
+            <Ellipse 
+                Margin="50,80,-10,80"
+                 Fill="#0AC2A2"
+                 ScaleX="1.5"
+                ScaleY="1"
+                 Grid.Row="0"
+                VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand" />
+            <Grid Grid.Row="0" RowDefinitions="Auto, Auto"  VerticalOptions="Center" HorizontalOptions="Center">
+                <Frame HeightRequest="20" Grid.Row="0" CornerRadius="10" BackgroundColor="#62E06F">
+                    <StackLayout HeightRequest="20" BackgroundColor="Transparent" Orientation="Horizontal">
+                        <Image Grid.Column="0" Source="{local:ImageResource RiceneticMobile.Images.Gallery.png}"  HorizontalOptions="Start" VerticalOptions="CenterAndExpand" ></Image>
+                        <Label HorizontalOptions="Center"  VerticalOptions="CenterAndExpand" TextColor="White" Text="Open Gallery"></Label>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickPhotoCommand}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame Margin="0,20,0,0" HeightRequest="20" Grid.Row="1" CornerRadius="10" BackgroundColor="#62E06F">
+                    <StackLayout HeightRequest="20" BackgroundColor="Transparent" Orientation="Horizontal">
+                        <Image Grid.Column="0"  Source="{local:ImageResource RiceneticMobile.Images.Camera.png}" Grid.Row="0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" ></Image>
+                        <Label HorizontalOptions="Center"  VerticalOptions="CenterAndExpand" TextColor="White"  Text="Open Camera"></Label>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenCameraCommand}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+            <Grid Grid.Row="1" Margin="10"  HeightRequest="100">
+                <Image Grid.Column="0" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
+                <Image Grid.Column="0" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.Info.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
 
+                <Image Grid.Column="1" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
+                <Image IsEnabled="False" Grid.Column="1" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.Go.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" >
+                </Image>
 
-            <Button Command="{Binding PickPhotoCommand}" Text="Upload Photo"></Button>
+                <Image Grid.Column="2" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
+                <Image Grid.Column="2" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.about.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
 
-            <Image Source="{Binding Image}"></Image>
-            <Button Command="{Binding PickPhotoCommand}" Text="Upload Photo"></Button>
-        </StackLayout>
+            </Grid>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

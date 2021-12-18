@@ -11,12 +11,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\background.jpg" />
+    <None Remove="Images\about.png" />
+    <None Remove="Images\Camera.png" />
+    <None Remove="Images\Circle.png" />
+    <None Remove="Images\Gallery.png" />
+    <None Remove="Images\Go.png" />
+    <None Remove="Images\Info.png" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\logoText.png" />
+    <None Remove="Images\Upload.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\about.png" />
+    <EmbeddedResource Include="Images\Camera.png" />
+    <EmbeddedResource Include="Images\Circle.png" />
+    <EmbeddedResource Include="Images\Gallery.png" />
+    <EmbeddedResource Include="Images\Go.png" />
+    <EmbeddedResource Include="Images\Info.png" />
+    <EmbeddedResource Include="Images\Logo.png" />
+    <EmbeddedResource Include="Images\logoText.png" />
+    <EmbeddedResource Include="Images\Upload.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
 
@@ -26,6 +46,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\HomeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ImageUploadView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\OptionChooserView.xaml">
