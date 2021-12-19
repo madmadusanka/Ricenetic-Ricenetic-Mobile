@@ -92,10 +92,10 @@ namespace Graycorp.Mobile.Services
             try
             {
                 HttpClient httpClient = await CreateHttpClientAsync(isAuthenticationRequired);
-                if (isAuthenticationRequired)
+                if (!isAuthenticationRequired)
                 {
                     string json = JsonConvert.SerializeObject(
-                        content,
+                        //content,
                         new JsonSerializerSettings()
                         {
                             ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -117,7 +117,7 @@ namespace Graycorp.Mobile.Services
        
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -203,7 +203,7 @@ namespace Graycorp.Mobile.Services
             {
                 HttpClientHandler httpClientHandler = new HttpClientHandler();
                 httpClient = new HttpClient(httpClientHandler);
-                //httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             }
             //httpClient.BaseAddress = new Uri(AppConfigs.BaseAPIUrl);

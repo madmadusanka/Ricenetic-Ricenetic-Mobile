@@ -15,6 +15,7 @@ namespace RiceneticMobile.ViewModels
 {
     public class OptionChooserViewModel : BaseViewModel
     {
+        private string base64;
         private ICommand _openCameraCommand = null;
         public ICommand OpenCameraCommand => _openCameraCommand = new Command(async () => await DoOpenCameraCommandAsync());
 
@@ -88,18 +89,31 @@ namespace RiceneticMobile.ViewModels
      
         async Task LoadPhotoAsync(FileResult photo)
         {
+            
             // canceled
             if (photo == null)
             {
                 //PhotoPath = null;
                 return;
             }
+
             // save the file into local storage
             var stream = await photo.OpenReadAsync();
-            Image = ImageSource.FromStream(() => stream);
+            var stream2 = await photo.OpenReadAsync();
+            Image = ImageSource.FromStream(() => stream2);
+            using (MemoryStream memory = new MemoryStream())
+            {
+
+                stream.CopyTo(memory);
+                byte[] bytes = memory.ToArray();
+                base64 = System.Convert.ToBase64String(bytes);
+            }
+
+
+
 
             Application.Current.MainPage = new ImageUploadView();
-            Application.Current.MainPage.BindingContext = new ImageUploadViewModel(Image);
+            Application.Current.MainPage.BindingContext = new ImageUploadViewModel(Image, base64);
             //PhotoPath = newFile;
         }
 

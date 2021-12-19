@@ -14,21 +14,33 @@ namespace RiceneticMobile.ViewModels
     public class ImageUploadViewModel :BaseViewModel
     {
        
-        public ImageUploadViewModel(ImageSource image)
+        public ImageUploadViewModel(ImageSource image, string base64)
         {
             Image = image;
-            
+            this.base64 = base64;
         }
+
+        private string base64;
 
         private ImageSource _image;
         public ImageSource Image { get { return _image; } set { SetProperty(ref _image, value); } }
 
         private ICommand _uploadPhotoCommand = null;
-        public ICommand UploadPhotoCommand => _uploadPhotoCommand = new Command(async () => await DoUploadPhotoCommand());
-        async Task DoUploadPhotoCommand()
+        public ICommand UploadPhotoCommand => _uploadPhotoCommand = new Command(async () =>  DoUploadPhotoCommandAsync());
+        async Task DoUploadPhotoCommandAsync()
         {
-            Application.Current.MainPage = new RequestView();
-            Application.Current.MainPage.BindingContext = new RequestViewModel(Image);
+            try
+            {
+                var requestViewModel = new RequestViewModel(Image, base64);
+                Application.Current.MainPage = new RequestView();
+                Application.Current.MainPage.BindingContext = requestViewModel;
+                await requestViewModel.sendImageAsync();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
             //httpRequestProviderService.PostAsync();
         }
     }
