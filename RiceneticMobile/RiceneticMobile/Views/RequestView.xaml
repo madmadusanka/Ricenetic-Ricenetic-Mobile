@@ -1,12 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RiceneticMobile.Extension"
              x:Class="RiceneticMobile.Views.RequestView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid BackgroundColor="White">
+            <ActivityIndicator Grid.Row="0" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  IsRunning="{Binding IsBusy}" BackgroundColor="Green" Color="LightGreen" />
+            <Frame   HeightRequest="250" WidthRequest="250" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  CornerRadius="5" BackgroundColor="#EDEDED" HasShadow="True">
+                <StackLayout BackgroundColor="Transparent">
+                    <Label FontSize="12" Text="Results" HorizontalOptions="CenterAndExpand" TextColor="#0AC2A2" ></Label>
+                    <Grid>
+                        <Label IsVisible="{Binding IsSuccess}" Grid.Row="0" Margin="0,10,0,0" Grid.Column="0" Text="Defficiency"></Label>
+                        <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Column="1" Text=":"></Label>
+                        <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Column="2" Text="{Binding Result}"></Label>
+                        <!--<Label Grid.Row="1" Margin="0,10,0,0"  Grid.Column="0" Text="Dosage"></Label>
+                        <Label Grid.Row="1" Grid.Column="1" Text=":"></Label>
+                        <Label Grid.Row="1" Grid.Column="1" Text=":"></Label>-->
+                        <Image  IsVisible="{Binding NotSuccess}" Grid.Column="0" Grid.ColumnSpan="3" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                        <Image IsVisible="{Binding NotSuccess}" Grid.Column="0" Grid.ColumnSpan="3"  Source="{local:ImageResource RiceneticMobile.Images.failed.png}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                        
+                    </Grid>
+                    <Label  IsVisible="{Binding NotSuccess}" HorizontalOptions="CenterAndExpand" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" TextColor="Red" Text="Failed To Recognize!"></Label>
+                    <BoxView VerticalOptions="EndAndExpand" BackgroundColor="Gray" Margin="0,10,0,0" HeightRequest="1"></BoxView>
+                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,10,0,0" Text="Ok" TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OkCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView  VerticalOptions="End" Margin="0,10,0,0" BackgroundColor="Gray" HeightRequest="1"></BoxView>
+                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,10,0,0" Text="Repick" TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RepickCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </Grid>
+           
     </ContentPage.Content>
 </ContentPage>

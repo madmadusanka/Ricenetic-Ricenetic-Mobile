@@ -3,12 +3,14 @@ using Graycorp.Mobile.Services.Interfaces;
 using Graycorp.Mobile.ViewModel.Base;
 using RiceneticMobile.Extension;
 using RiceneticMobile.Models;
+using RiceneticMobile.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RiceneticMobile.ViewModels
@@ -25,22 +27,83 @@ namespace RiceneticMobile.ViewModels
             httpRequestProviderService = new HttpRequestProviderService();
           
         }
+
+        private ICommand _repickCommand = null;
+        public ICommand RepickCommand => _repickCommand = new Command(async () =>  DoRepickCommand());
+
+        private ICommand _okCommand = null;
+        public ICommand OkCommand => _okCommand = new Command(async () =>  DoOkCommand());
+
+
+        private void DoRepickCommand()
+        {
+            Application.Current.MainPage = new OptionChooserView();
+            Application.Current.MainPage.BindingContext = new OptionChooserViewModel();
+        }
+
+        private void DoOkCommand()
+        {
+            Application.Current.MainPage = new HomeView();
+            Application.Current.MainPage.BindingContext = new HomeViewModel();
+        }
+
+        
+
+
         IHttpRequestProviderService httpRequestProviderService;
         private ImageSource _image;
         public ImageSource Image { get { return _image; } set { SetProperty(ref _image, value); } }
 
+        private string _result;
+        public string Result { get { return _result; } set { SetProperty(ref _result, value); } }
+
+        private bool _isSuccess;
+        public bool IsSuccess { get { return _isSuccess; } set { SetProperty(ref _isSuccess, value); } }
+        private bool _notSuccess;
+        public bool NotSuccess { get { return _notSuccess; } set { SetProperty(ref _notSuccess, value); } }
         public override Task OnAppearingAsync(object parameter)
         {
-            sendImageAsync();
+            IsBusy = true;
+            try
+            {
+                sendImageAsync();
+            }
+            catch(Exception EX)
+            {
+                NotSuccess = true;
+                Application.Current.MainPage.DisplayAlert("Alert", EX.Message, "Ok");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
             return base.OnAppearingAsync(parameter);
         }
         public async Task sendImageAsync()
         {
-            InputModel input = new InputModel
+            try
             {
-                base64 = base64
-            };
-             httpRequestProviderService.PostAsync(url, input, false);
+                InputModel input = new InputModel
+                {
+                    base64 = base64
+                };
+                var result = await httpRequestProviderService.PostAsync(url, input, false);
+                if (!String.IsNullOrEmpty(result.Prediction))
+                {
+                    Result = result.Prediction;
+                    IsSuccess = true;
+                }
+                else
+                {
+                    NotSuccess = true;
+                }
+            }
+            catch
+            {
+                NotSuccess = true;
+            }
+
+
         }
     }
    

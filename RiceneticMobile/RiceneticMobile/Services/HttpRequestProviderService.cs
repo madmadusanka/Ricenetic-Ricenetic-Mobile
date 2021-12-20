@@ -3,6 +3,7 @@ using Graycorp.Mobile.Services.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using RiceneticMobile.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -32,7 +33,6 @@ namespace Graycorp.Mobile.Services
 
             };
 
-            jsonSerializerSettings.Converters.Add(new StringEnumConverter());
         }
 
         private void _constructor()
@@ -85,17 +85,19 @@ namespace Graycorp.Mobile.Services
             return result;
         }
 
-        public async Task<HttpResponseMessage> PostAsync(string url, object content, bool isAuthenticationRequired = false)
+        public async Task<ModelOutput> PostAsync(string url, object content, bool isAuthenticationRequired = false)
         {
             HttpResponseMessage response = null;
-            
+            ModelOutput output = new ModelOutput();
+
+
             try
             {
                 HttpClient httpClient = await CreateHttpClientAsync(isAuthenticationRequired);
                 if (!isAuthenticationRequired)
                 {
                     string json = JsonConvert.SerializeObject(
-                        //content,
+                        content,
                         new JsonSerializerSettings()
                         {
                             ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -104,12 +106,14 @@ namespace Graycorp.Mobile.Services
 
                     response = await httpClient.PostAsync(url, httpContent);
 
-                    if (response?.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    if (response?.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         //if (await authenticationService.Authenticate())
                         //{
                         //    return await PostAsync(url, content);
                         //}
+                        string responseData = await response.Content.ReadAsStringAsync();
+                        output = JsonConvert.DeserializeObject<ModelOutput>(responseData, jsonSerializerSettings);
                     }
                 }
                 else
@@ -119,10 +123,11 @@ namespace Graycorp.Mobile.Services
             }
             catch (Exception ex)
             {
-                throw;
+                //throw;
+                return output;
             }
-
-            return response;
+            
+            return output;
         }
 
         //public async Task<AuthResponseModel> LoginRequest(string url, AuthModel authModel )

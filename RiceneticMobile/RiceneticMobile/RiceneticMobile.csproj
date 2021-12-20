@@ -14,6 +14,7 @@
     <None Remove="Images\about.png" />
     <None Remove="Images\Camera.png" />
     <None Remove="Images\Circle.png" />
+    <None Remove="Images\failed.png" />
     <None Remove="Images\Gallery.png" />
     <None Remove="Images\Go.png" />
     <None Remove="Images\Info.png" />
@@ -26,6 +27,7 @@
     <EmbeddedResource Include="Images\about.png" />
     <EmbeddedResource Include="Images\Camera.png" />
     <EmbeddedResource Include="Images\Circle.png" />
+    <EmbeddedResource Include="Images\failed.png" />
     <EmbeddedResource Include="Images\Gallery.png" />
     <EmbeddedResource Include="Images\Go.png" />
     <EmbeddedResource Include="Images\Info.png" />
