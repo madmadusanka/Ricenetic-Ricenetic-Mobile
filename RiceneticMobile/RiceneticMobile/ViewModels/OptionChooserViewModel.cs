@@ -22,7 +22,21 @@ namespace RiceneticMobile.ViewModels
         private ICommand _pickPhotoCommand = null;
         public ICommand PickPhotoCommand => _pickPhotoCommand = new Command(async () => await DoPickPhotoCommand());
 
+        private ICommand _openInstructionCommand = null;
+        public ICommand OpenInstructionCommand => _openInstructionCommand = new Command(async () => DoOpenInstructionCommand());
 
+        private ICommand _openAboutCommand = null;
+        public ICommand OpenAboutCommand => _openAboutCommand = new Command(async () =>  DoOpenAboutCommand());
+
+
+        private void DoOpenAboutCommand()
+        {
+            Application.Current.MainPage = new AboutView();
+        }
+        private void DoOpenInstructionCommand()
+        {
+            Application.Current.MainPage = new InstructionView();
+        }
 
         private ImageSource _image;
         public ImageSource Image { get { return _image; } set { SetProperty(ref _image, value);} }
@@ -109,7 +123,7 @@ namespace RiceneticMobile.ViewModels
                 base64 = System.Convert.ToBase64String(bytes);
             }
 
-
+            //base64 = photo.FullPath;
 
 
             Application.Current.MainPage = new ImageUploadView();

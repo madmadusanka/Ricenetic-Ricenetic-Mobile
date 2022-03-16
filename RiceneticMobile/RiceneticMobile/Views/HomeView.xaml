@@ -60,7 +60,11 @@
             </Grid>
             <Grid Grid.Row="1" Margin="10"  HeightRequest="100">
                     <Image Grid.Column="0" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
-                    <Image Grid.Column="0" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.Info.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
+                    <Image Grid.Column="0" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.Info.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenInstructionCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
 
                 <Image Grid.Column="1" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
                 <Image Grid.Column="1" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.Go.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" >
@@ -70,7 +74,11 @@
                 </Image>
 
                 <Image Grid.Column="2" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
-                <Image Grid.Column="2" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.about.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" ></Image>
+                <Image Grid.Column="2" Margin="5" Source="{local:ImageResource RiceneticMobile.Images.about.png}" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenAboutCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
 
             </Grid>
         </Grid>

@@ -8,7 +8,8 @@ namespace RiceneticMobile.Models
     {
         public string Prediction { get; set; }
 
-        public float[] Score { get; set; }
+        public string leaf { get; set; }
+        public string symptom { get; set; }
     }
 
 }

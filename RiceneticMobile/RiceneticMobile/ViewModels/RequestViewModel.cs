@@ -57,10 +57,44 @@ namespace RiceneticMobile.ViewModels
         private string _result;
         public string Result { get { return _result; } set { SetProperty(ref _result, value); } }
 
+        private string _dosage;
+        public string Dosage { get { return _dosage; } set { SetProperty(ref _dosage, value); } }
+
         private bool _isSuccess;
         public bool IsSuccess { get { return _isSuccess; } set { SetProperty(ref _isSuccess, value); } }
         private bool _notSuccess;
+
+        public Image SymptomImage { get { return _symptomImage; } set { SetProperty(ref _symptomImage, value); } }
+        private Image _symptomImage;
+        public Image LeafImage { get { return _leafImage; } set { SetProperty(ref _leafImage, value); } }
+        private Image _leafImage;
         public bool NotSuccess { get { return _notSuccess; } set { SetProperty(ref _notSuccess, value); } }
+
+
+        private bool _one;
+        public bool One { get { return _one; } set { SetProperty(ref _one, value); } }
+
+        private bool _two;
+        public bool Two { get { return _two; } set { SetProperty(ref _two, value); } }
+
+        private bool _three;
+        public bool Three { get { return _three; } set { SetProperty(ref _three, value); } }
+
+        private bool _four;
+        public bool Four { get { return _four; } set { SetProperty(ref _four, value); } }
+
+        private bool _five;
+        public bool Five { get { return _five; } set { SetProperty(ref _five, value); } }
+
+        private bool _six;
+        public bool Six { get { return _six; } set { SetProperty(ref _six, value); } }
+
+
+
+
+
+
+
         public override Task OnAppearingAsync(object parameter)
         {
             IsBusy = true;
@@ -91,7 +125,57 @@ namespace RiceneticMobile.ViewModels
                 if (!String.IsNullOrEmpty(result.Prediction))
                 {
                     Result = result.Prediction;
+                    var im = new Image();
+                    im.Source = ToImage(result.symptom);
+                    SymptomImage = im;
+                    var leaf = new Image();
+                    leaf.Source = ToImage(result.leaf);
+                    LeafImage = leaf;
                     IsSuccess = true;
+
+                    if (result.Prediction == "0")
+                        {
+                            One = true;
+                            Result = "Nitrogen";
+                            Dosage = "15Kg - 20 Kg per hectare";
+                        }
+
+                    else if (result.Prediction == "1")
+                    {
+                        Two = true;
+                        Result = "Nitrogen";
+                        Dosage = "8Kg - 10Kg per hectare";
+                    }
+                        
+                    else if (result.Prediction == "2")
+                    {
+                        Three = true;
+                        Result = "Phosphorus";
+                        Dosage = "3Kg - 2Kg per hectare";
+                    }
+                       
+                    else if (result.Prediction == "3")
+                    {
+                        Four = true;
+                        Result = "Phosphorus";
+                        Dosage = "1Kg - 2Kg per hectare";
+                    }
+                        
+                    else if (result.Prediction == "4")
+                    {
+                        Five = true;
+                        Result = "Potassium";
+                        Dosage = "6Kg - 9Kg per hectare";
+                    }
+                        
+                    else
+                    {
+                        Six = true;
+                        Result = "Potassium";
+                        Dosage = "15Kg - 20 Kg per hectare";
+                    }
+                    //['NitrogenHigh', 'NitrogenLow', 'PhosphorusHigh', 'PhosphorusLow', 'PotassiumHigh', 'PotassiumLow']
+
                 }
                 else
                 {
@@ -105,6 +189,14 @@ namespace RiceneticMobile.ViewModels
 
 
         }
+        private ImageSource ToImage(string source)
+        {
+            var byteArray = Convert.FromBase64String(source);
+            Stream stream = new MemoryStream(byteArray);
+            var imageSource = ImageSource.FromStream(() => stream);
+            return imageSource;
+        }
+           
     }
    
 

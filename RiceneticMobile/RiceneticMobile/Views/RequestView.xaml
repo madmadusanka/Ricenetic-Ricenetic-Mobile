@@ -4,38 +4,58 @@
              xmlns:local="clr-namespace:RiceneticMobile.Extension"
              x:Class="RiceneticMobile.Views.RequestView">
     <ContentPage.Content>
-        <Grid BackgroundColor="White">
-            <ActivityIndicator Grid.Row="0" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  IsRunning="{Binding IsBusy}" BackgroundColor="Green" Color="LightGreen" />
-            <Frame   HeightRequest="250" WidthRequest="250" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  CornerRadius="5" BackgroundColor="#EDEDED" HasShadow="True">
-                <StackLayout BackgroundColor="Transparent">
-                    <Label FontSize="12" Text="Results" HorizontalOptions="CenterAndExpand" TextColor="#0AC2A2" ></Label>
-                    <Grid>
-                        <Label IsVisible="{Binding IsSuccess}" Grid.Row="0" Margin="0,10,0,0" Grid.Column="0" Text="Defficiency"></Label>
-                        <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Column="1" Text=":"></Label>
-                        <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Column="2" Text="{Binding Result}"></Label>
-                        <!--<Label Grid.Row="1" Margin="0,10,0,0"  Grid.Column="0" Text="Dosage"></Label>
+        <ScrollView>
+            <StackLayout >
+                <Grid BackgroundColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <ActivityIndicator Grid.Row="0" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  IsRunning="{Binding IsBusy}" BackgroundColor="Green" Color="LightGreen" />
+                    <Frame   HeightRequest="250" WidthRequest="250" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  CornerRadius="5" BackgroundColor="#EDEDED" HasShadow="True">
+                        <StackLayout BackgroundColor="Transparent">
+                            <Label FontSize="12" Text="Results" HorizontalOptions="CenterAndExpand" TextColor="#0AC2A2" ></Label>
+                            <Grid ColumnDefinitions="auto,auto,auto">
+                                <Label IsVisible="{Binding IsSuccess}" Grid.Row="0" Margin="0,10,0,0" Grid.Column="0" Text="Defficiency"></Label>
+                                <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Column="1" Text=":"></Label>
+                                <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Column="2" Text="{Binding Result}"></Label>
+                                <Label IsVisible="{Binding IsSuccess}" Grid.Row="1" Margin="0,10,0,0" Grid.Column="0" Text="Dosage"></Label>
+                                <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" Text=":"></Label>
+                                <Label IsVisible="{Binding IsSuccess}" Margin="0,10,0,0" Grid.Row="1" Grid.Column="2" Text="{Binding Dosage}"></Label>
+                                <!--<Label Grid.Row="1" Margin="0,10,0,0"  Grid.Column="0" Text="Dosage"></Label>
                         <Label Grid.Row="1" Grid.Column="1" Text=":"></Label>
                         <Label Grid.Row="1" Grid.Column="1" Text=":"></Label>-->
-                        <Image  IsVisible="{Binding NotSuccess}" Grid.Column="0" Grid.ColumnSpan="3" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
-                        <Image IsVisible="{Binding NotSuccess}" Grid.Column="0" Grid.ColumnSpan="3"  Source="{local:ImageResource RiceneticMobile.Images.failed.png}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
-                        
-                    </Grid>
-                    <Label  IsVisible="{Binding NotSuccess}" HorizontalOptions="CenterAndExpand" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" TextColor="Red" Text="Failed To Recognize!"></Label>
-                    <BoxView VerticalOptions="EndAndExpand" BackgroundColor="Gray" Margin="0,10,0,0" HeightRequest="1"></BoxView>
-                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,10,0,0" Text="Ok" TextColor="Blue">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OkCommand}"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <BoxView  VerticalOptions="End" Margin="0,10,0,0" BackgroundColor="Gray" HeightRequest="1"></BoxView>
-                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,10,0,0" Text="Repick" TextColor="Blue">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding RepickCommand}"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
+                                <Image  IsVisible="{Binding NotSuccess}" Grid.Column="0" Grid.ColumnSpan="3" Source="{local:ImageResource RiceneticMobile.Images.Circle.png}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                                <Image IsVisible="{Binding NotSuccess}" Grid.Column="0" Grid.ColumnSpan="3"  Source="{local:ImageResource RiceneticMobile.Images.failed.png}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+
+                            </Grid>
+                            <Label  IsVisible="{Binding NotSuccess}" HorizontalOptions="CenterAndExpand" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" TextColor="Red" Text="Failed To Recognize!"></Label>
+                            <BoxView VerticalOptions="EndAndExpand" BackgroundColor="Gray" Margin="0,10,0,0" HeightRequest="1"></BoxView>
+                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,10,0,0" Text="Ok" TextColor="Blue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OkCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <BoxView  VerticalOptions="End" Margin="0,10,0,0" BackgroundColor="Gray" HeightRequest="1"></BoxView>
+                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,10,0,0" Text="Repick" TextColor="Blue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding RepickCommand}"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+                <Label IsVisible="{Binding IsSuccess}" Text="Detected symptom area" FontSize="15"  HorizontalOptions="CenterAndExpand" TextColor="#0AC2A2"></Label>
+                <Image    Source="{Binding SymptomImage.Source}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                <Label IsVisible="{Binding IsSuccess}" Text="Detected leaf" FontSize="15"  HorizontalOptions="CenterAndExpand" TextColor="#0AC2A2"></Label>
+                <Image    Source="{Binding LeafImage.Source}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                <!--<Label IsVisible="{Binding IsSuccess}" Text="Detected symptom area" FontSize="12"  HorizontalOptions="CenterAndExpand" TextColor="#0AC2A2"></Label>-->
+                <StackLayout IsVisible="{Binding IsSuccess}">
+                    <!--['NitrogenHigh', 'NitrogenLow', 'PhosphorusHigh', 'PhosphorusLow', 'PotassiumHigh', 'PotassiumLow']-->
+                    <Image IsVisible="{Binding One}"    Source="{local:ImageResource RiceneticMobile.Images.symptom.1.jpg}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                    <Image IsVisible="{Binding Two}"     Source="{local:ImageResource RiceneticMobile.Images.symptom.2.jpg}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                    <Image IsVisible="{Binding Three}"   Source="{local:ImageResource RiceneticMobile.Images.symptom.3.jpg}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                    <Image IsVisible="{Binding Four}"   Source="{local:ImageResource RiceneticMobile.Images.symptom.4.jpg}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                    <Image IsVisible="{Binding Five}"   Source="{local:ImageResource RiceneticMobile.Images.symptom.5.jpg}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                    <Image IsVisible="{Binding Six}"   Source="{local:ImageResource RiceneticMobile.Images.symptom.6.jpg}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
                 </StackLayout>
-            </Frame>
-        </Grid>
-           
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

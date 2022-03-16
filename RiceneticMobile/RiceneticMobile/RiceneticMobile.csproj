@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -20,7 +20,17 @@
     <None Remove="Images\Info.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\logoText.png" />
+    <None Remove="Images\symptom\1.jpg" />
+    <None Remove="Images\symptom\2.jpg" />
+    <None Remove="Images\symptom\3.jpg" />
+    <None Remove="Images\symptom\4.jpg" />
+    <None Remove="Images\symptom\5.jpg" />
+    <None Remove="Images\symptom\6.jpg" />
     <None Remove="Images\Upload.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\symptom\6.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,11 +43,17 @@
     <EmbeddedResource Include="Images\Info.png" />
     <EmbeddedResource Include="Images\Logo.png" />
     <EmbeddedResource Include="Images\logoText.png" />
+    <EmbeddedResource Include="Images\symptom\1.jpg" />
+    <EmbeddedResource Include="Images\symptom\2.jpg" />
+    <EmbeddedResource Include="Images\symptom\3.jpg" />
+    <EmbeddedResource Include="Images\symptom\4.jpg" />
+    <EmbeddedResource Include="Images\symptom\5.jpg" />
     <EmbeddedResource Include="Images\Upload.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="107.3.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
@@ -47,10 +63,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\AboutView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\HomeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ImageUploadView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\InstructionView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\OptionChooserView.xaml">

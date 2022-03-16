@@ -103,7 +103,7 @@ namespace Graycorp.Mobile.Services
                             ContractResolver = new CamelCasePropertyNamesContractResolver()
                         });
                     HttpContent httpContent = new StringContent(json);
-
+                    //httpClient.DefaultRequestHeaders.Add("base64", ((InputModel)content).base64);
                     response = await httpClient.PostAsync(url, httpContent);
 
                     if (response?.StatusCode == System.Net.HttpStatusCode.OK)
@@ -112,8 +112,16 @@ namespace Graycorp.Mobile.Services
                         //{
                         //    return await PostAsync(url, content);
                         //}
-                        string responseData = await response.Content.ReadAsStringAsync();
-                        output = JsonConvert.DeserializeObject<ModelOutput>(responseData, jsonSerializerSettings);
+                        var symptom = response.Headers.GetValues("symptom");
+                        var leaf = response.Headers.GetValues("leaf");
+                        var predi = response.Headers.GetValues("pred");
+                        return new ModelOutput
+                        {
+                            leaf = ((string[])leaf)[0],
+                            Prediction = ((string[])predi)[0],
+                            symptom = ((string[])symptom)[0]
+
+                        };
                     }
                 }
                 else
@@ -170,7 +178,6 @@ namespace Graycorp.Mobile.Services
                     });
 
                 HttpContent httpContent = new StringContent(json);
-
                 response = await httpClient.PutAsync(url, httpContent);
 
                 if (response?.StatusCode == System.Net.HttpStatusCode.Unauthorized)
